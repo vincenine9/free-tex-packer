@@ -36,7 +36,11 @@ function createWindow() {
         minWidth: w,
         minHeight: h,
         title: "",
-        icon: path.resolve(__dirname, 'www/static/images/icon.png')
+        icon: path.resolve(__dirname, 'www/static/images/icon.png'),
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
     });
 
     mainWindowState.manage(mainWindow);
@@ -66,7 +70,10 @@ function createWindow() {
     });
 	
 	mainWindow.webContents.on('will-navigate', handleRedirect);
-	mainWindow.webContents.on('new-window', handleRedirect);
+	mainWindow.webContents.setWindowOpenHandler(({url}) => {
+		handleRedirect({preventDefault: () => {}}, url);
+		return {action: 'deny'};
+	});
 
     mainWindow.webContents.on('did-finish-load', function() {
         CURRENT_PROJECT = "";
