@@ -4,7 +4,7 @@
 
 #
 
-## IMPORTANT: I don't have time to imporove this app anymore. Only critical bugs will be fixed.
+## Fork of Ordick's Free Tex Packer, aimed for personal use, updating for M1 Mac binaries
 
 #
 
